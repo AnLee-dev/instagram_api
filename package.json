@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/AnLee-dev/instagram_api#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "mongoose": "^7.0.3",
     "nodemon": "^2.0.22"
   }
 }
