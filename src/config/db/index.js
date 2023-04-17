@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-async function connect (){
-    try{
-        await mongoose.connect('mongodb://localhost:27017/insta_data_dev', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log('complete!!!');
-    } catch(error){
-        console.log('faile loi` !!!');
-    }
+async function connect() {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/insta_data_dev', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("complete!!!");
+  } catch (error) {
+    console.log("faile loi` ti~ !!!");
+  }
 }
 
-module.exports = {connect};
+module.exports = { connect };

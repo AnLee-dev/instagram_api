@@ -1,35 +1,41 @@
-const path = require('path');
+const path = require("path");
 const express = require("express");
-const morgan = require('morgan');
-const handlebars = require('express-handlebars');
-const app = express();  
+const morgan = require("morgan");
+const handlebars = require("express-handlebars");
+const app = express();
 const PORT = 3000;
+const db = require("./config/db");
 
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}))
-
-//HTTP logger
-app.use(morgan('combined'))
-
-//template engine
-app.engine('hbs', handlebars.engine({
-  defaultLayout: 'main',
-  extname: '.hbs'
-}));
-app.set('view engine',"hbs")
-const db = require('./config/db');
 //connect db
 db.connect();
 
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+//HTTP logger
+app.use(morgan("combined"));
+
+//template engine
+app.engine(
+  "hbs",
+  handlebars.engine({
+    defaultLayout: "main",
+    extname: ".hbs",
+  })
+);
+app.set("view engine", "hbs");
+
 // const http = require('http');
 
-const route = require('./routes')
-app.set('views', path.join(__dirname, 'resources/views'));
+const route = require("./routes");
+app.set("views", path.join(__dirname, "resources/views"));
 
 //router init
-route(app );
+route(app);
 const mockData = [
   { id: 1, name: "JS" },
   { id: 2, name: "React" },
@@ -53,9 +59,6 @@ const mockData = [
 //         data: null
 //     }));
 // })
-
-
-
 
 //GET method
 
