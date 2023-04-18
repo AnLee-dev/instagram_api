@@ -1,13 +1,120 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    <h1>home page</h1>
-</body>
+  </head>
+  <body>
+    {{#each article}}
+      <div class="flex justify-center">
+        <nav class="self-center w-full max-w-7xl">
+          <div class="flex flex-col lg:flex-row justify-around items-center">
+            <h1
+              class="uppercase pl-5 py-4 text-lg font-sans font-bold"
+            >{{this.user.id}}</h1>
+            <ul
+              class="hidden lg:flex items-center text-[18px] font-semibold pl-32"
+            >
+              <li
+                class="hover:underline underline-offset-4 decoration-2 decoration-white py-2 rounded-lg px-5"
+              >
+                <a href="#">{{this.user.username}}</a>
+              </li>
+              <li
+                class="hover:underline underline-offset-4 decoration-2 decoration-white py-2 rounded-lg px-5"
+              ><a href="#">{{this.user.full_name}}</a></li>
+              <li
+                class="hover:underline underline-offset-4 decoration-2 decoration-white py-2 rounded-lg px-5"
+              ><a href="#">{{this.caption_text}}</a></li>
+              <li
+                class="hover:underline underline-offset-4 decoration-2 decoration-white py-2 rounded-lg px-5"
+              ><a href="#">{{this.user.profile_pic_url}}</a></li>
+              <li
+                class="hover:underline underline-offset-4 decoration-2 decoration-white py-2 rounded-lg px-5"
+              ><a href="#">{{this.like_count}}</a></li>
+            </ul>
+
+          </div>
+        </nav>
+      </div>
+      <div class="flex justify-center items-center">
+        <div class="flex flex-col justify-center items-center max-w-7xl">
+          <h1
+            class="text-3xl md:text-[50px] text-gray-700 font-bold mt-5"
+          >{{this.user.username}}</h1>
+          <div
+            class="flex flex-col justify-center items-center xl:flex-row m-8 w-[80%] lg:w-full"
+          >
+            <div
+              class="flex flex-col items-center justify-center m-6 px-6 lg:w-1/3 w-full"
+            >
+              <h1
+                class="text-gray-700 text-2xl font-bold"
+              >{{this.user.full_name}}</h1>
+              <div
+                class="flex items-center justify-center flex-col space-y-2 mt-5"
+              >
+                <div class="flex items-center justify-center space-x-4">
+                  <img
+                    src="https://www.esearchlogix.com/wp-content/uploads/2022/04/web-left-banner.jpg"
+                    class="w-[20%] md:w-[5%]"
+                    alt=""
+                  />
+                  <h1 class="text-lg font-semibold mt-3">Web Development</h1>
+                </div>
+                <h1
+                  class="text-justify text-gray-700 md:w-[250px]"
+                >{{this.caption_text}}</h1>
+              </div>
+              <div
+                class="flex items-center justify-center flex-col space-y-2 mt-5"
+              >
+                <div class="flex items-center justify-center space-x-4">
+                  <img
+                    src="https://img.freepik.com/free-vector/gradient-ui-ux-background_23-2149024129.jpg?w=2000"
+                    class="w-[20%] md:w-[5%]"
+                    alt=""
+                  />
+                  <h1 class="text-lg font-semibold mt-2">UI/UX Design</h1>
+                </div>
+                <h1
+                  class="text-justify text-gray-700 md:w-[250px]"
+                >{{this.like_count}}</h1>
+              </div>
+              <div
+                class="flex items-center justify-center flex-col space-y-2 mt-3"
+              >
+                <div class="flex items-center justify-center space-x-4">
+                  <img
+                    src="https://webconsulting.ie/wp-content/uploads/2020/09/cropped-logo-Web-Consulting.png"
+                    class="w-[20%] md:w-[5%]"
+                    alt=""
+                  />
+                  <h1 class="text-lg font-semibold mt-5">Web Consulting</h1>
+                </div>
+                <h1
+                  class="text-justify text-gray-700 md:w-[250px]"
+                >{{this.total_comment}}</h1>
+              </div>
+            </div>
+            <div class="w-60 lg:w-96 h-60 lg:h-96 overflow-hidden">
+              <a href="/news/{{this.id}}">
+                <img
+                  src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg"
+                  class="h-full w-full"
+                  alt=""
+                />
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    {{/each}}
+  </body>
 </html>

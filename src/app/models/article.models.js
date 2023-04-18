@@ -26,5 +26,4 @@ const Article = new Schema({
   },
   id: Number,
 });
-
 module.exports = mongoose.model("Article", Article);

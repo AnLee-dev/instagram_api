@@ -1,24 +1,19 @@
-const Article = require('../models/article.models');
-
+const Article = require("../models/article.models");
+const { multipleMongooseToObject } = require('../../util/mongoose')
 class SiteController {
+  //[GET] /home
+  home(req, res, next) {
+    Article.find({})
+      .then(article => {
+        res.render('home', {article: multipleMongooseToObject(article)})
+      })
+      .catch(next)
+  }
 
-    //[GET] /news
-    home(req, res) {
-        res.render('home');
-
-        Article.find({}, function(err, articles){
-            if(!err){
-                res.json(articles)
-            } else{
-                res.status(400).json({error: "ERROR!!!"});
-            }
-        });
-    }
-
-    //[GET] /news/:slug
-    search(req, res) {
-        res.render("search");
-    }
+  //[GET] search
+  search(req, res) {
+    res.render("search");
+  }
 }
 
-module.exports = new SiteController;
+module.exports = new SiteController();

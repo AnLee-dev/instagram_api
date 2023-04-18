@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const app = express();
-const PORT = 3000;
+const PORT = 7749;
 const db = require("./config/db");
 
 //connect db
@@ -32,7 +32,7 @@ app.set("view engine", "hbs");
 // const http = require('http');
 
 const route = require("./routes");
-app.set("views", path.join(__dirname, "resources/views"));
+app.set("views", path.join(__dirname, "resources", "views"));
 
 //router init
 route(app);
@@ -119,4 +119,4 @@ const mockData = [
 //         })
 //     );
 // });
-app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

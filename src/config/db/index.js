@@ -1,15 +1,12 @@
 const mongoose = require("mongoose");
-
-async function connect() {
+mongoose.set("strictQuery", true);
+const connect = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/insta_data_dev', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("complete!!!");
-  } catch (error) {
-    console.log("faile loi` ti~ !!!");
+    await mongoose.connect("mongodb://127.0.0.1:27017/insta_data_dev");
+    console.log("connected");
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
 module.exports = { connect };
