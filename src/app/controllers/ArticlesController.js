@@ -18,14 +18,11 @@ class ArticleController {
     //POST /articleDetail/store
   store(req, res, next) {
     const data = req.body;
-    const userName = req.body.username;
-    const captionText = req.body.caption_text;
-    const fullName = req.body.full_name;
+    const content = req.body.content;
+    const media = req.body.profile_pic_url;
     const article = new Article(data);
-    article.user.username = userName;
-    article.user.profile_pic_url = fullName;
-    article.caption_text = captionText;
-    console.log('article', article);
+    article.user.username = content;
+    article.user.profile_pic_url = media;
     article.save()
         .then(() => res.redirect('/'))
         .catch(next)
