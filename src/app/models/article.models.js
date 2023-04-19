@@ -25,5 +25,5 @@ const Article = new Schema({
     ],
   },
   id: Number,
-});
+}, {timestamps: true});
 module.exports = mongoose.model("Article", Article);
