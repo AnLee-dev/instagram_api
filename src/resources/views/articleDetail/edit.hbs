@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="w-[100vw] h-[80vh] flex justify-center">
-      <div class="w-[60%] h-[100%] bg-[red] flex">
+      <div class="w-[60%] h-[100%] bg-[#CFCFCF] grid gap-4 grid-cols-1">
         <div class="w-[100%]">
           <div class="flex justify-between">
             <div class=""><svg
@@ -37,22 +37,23 @@
                   stroke-linejoin="round"
                   stroke-width="2"
                 ></polyline></svg></div>
-            <div class="">Create new post</div>
+            <div class="">Edit post</div>
             <button class="">Share</button>
           </div>
         </div>
-        <div class="">
-          <div class="">
-            <div class="">name vs image user here</div>
-            <div class="">
-              <div class="">
-                <form method="POST" action="/article/store">
+        <div class="w-[100%] flex justify-center items-center">
+          <div class="w-[100%] grid gap-4 grid-cols-2">
+            <div class="flex w-[50%] justify-around items-center">name vs image user here</div>
+            <div class="flex w-[100%]">
+              <div class="grid gap-4">
+                <form method="POST" action="/article/{{this._id}}?_method=PUT">
                   <div class="form-group">
                     <input
                       type="text"
                       class="form-control border-2 border-rose-500"
-                      id="content"
-                      name="content"
+                      id="username"
+                      name="username"
+                      value="{{this.user.username}}"
                     />
                   </div>
                   <div class="form-group">
@@ -61,9 +62,10 @@
                       class="form-control border-2 border-rose-500"
                       id="profilePicUrl"
                       name="profile_pic_url"
+                      value="{{this.user.profile_pic_url}}"
                     />
                   </div>
-                  <button class="rounded-full">Share</button>
+                  <button type="submit" class="rounded-full">Save</button>
                 </form>
               </div>
             </div>

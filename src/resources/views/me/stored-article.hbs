@@ -1,0 +1,176 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+  </head>
+  <body>
+    <div class="w-[100vw] h-[80vh] flex justify-center">
+      <div class="w-[60%] h-[100%] bg-[#CFCFCF] grid gap-4 grid-cols-1">
+        <div class="w-[100%]">
+          <div class="flex justify-between">
+            <div class=""><svg
+                aria-label="Quay lại"
+                class="x1lliihq x1n2onr6"
+                color="rgb(0, 0, 0)"
+                fill="rgb(0, 0, 0)"
+                height="24"
+                role="img"
+                viewBox="0 0 24 24"
+                width="24"
+              ><title>Quay lại</title><line
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  x1="2.909"
+                  x2="22.001"
+                  y1="12.004"
+                  y2="12.004"
+                ></line><polyline
+                  fill="none"
+                  points="9.276 4.726 2.001 12.004 9.276 19.274"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></polyline></svg></div>
+            <div class="">Create new post</div>
+            <button class="">Share</button>
+          </div>
+        </div>
+        <div class="w-[100%] flex justify-center items-center">
+          <div class="w-[100%] grid gap-4 grid-cols-2">
+            {{#each article}}
+              <div class="flex w-[50%] justify-around items-center">
+                <button class="w-[50%] flex justify-center items-center">
+                  <div
+                    class="rounded-[50%] w-[42px] h-[42px] bg-gradient-to-tr from-[#FFC500] to-[#D300C5] p-[3px]"
+                  >
+                    <div
+                      class="flex items-center justify-center rounded-[50%] bg-white p-[2px]"
+                    >
+                      <img
+                        src="{{this.user.profile_pic_url}}"
+                        alt="avt"
+                        class="h-[32px] w-[32px] rounded-[50%]"
+                      />
+                    </div>
+                  </div>
+                </button>
+                <span class="w-[50%]">
+                  {{this.user.username}}
+                </span>
+              </div>
+              <div class="flex w-[100%]">
+                <div class="grid gap-4">
+                  <form
+                    method="POST"
+                    action="/article/store"
+                    class="grid gap-4 grid-cols-2"
+                  >
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control border-2 border-rose-500"
+                        id="content"
+                        name="content"
+                        placeholder="name"
+                        value="{{this.user.username}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control border-2 border-rose-500"
+                        id="profilePicUrl"
+                        name="profile_pic_url"
+                        placeholder="Image"
+                        value="{{this.user.profile_pic_url}}"
+                      />
+                    </div>
+                    <a
+                      href="/article/{{this._id}}/edit"
+                      class="rounded-full"
+                    >Update</a>
+                    <a
+                      data-id="{{this._id}}"
+                      data-toggle="modal"
+                      data-target="#my-modal"
+                      id="open-delete-btn"
+                      class="bg-green-500 text-white rounded-md px-8 py-2 text-base font-medium hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+                    >Delete</a>
+                  </form>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{! Popup delete }}
+    <div
+      class="modal fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+      id="my-modal"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div
+        class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+      >
+        <div class="mt-3 text-center">
+
+          <div class="mt-2 px-7 py-3">
+            <p class="text-sm text-gray-500">
+              Do you want delete?
+            </p>
+          </div>
+          <div class="flex justify-around items-center px-4 py-3">
+            <button
+              id="delete-btn"
+              class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-[30%] shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+            >
+              Delete
+            </button>
+            <button
+              id="cancel-btn"
+              class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md w-[30%] shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--modal content-->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      let modal = document.getElementById("my-modal"); 
+      let btn = document.getElementById("open-delete-btn");
+      let buttonDelete = document.getElementById("delete-btn");
+      let buttonCancel =document.getElementById("cancel-btn");
+      btn.onclick = function() { modal.style.display ='block'};
+      buttonDelete.onclick = function() { modal.style.display = "none"; };
+      buttonCancel.onclick = function() { modal.style.display = "none"; };
+      window.onclick = function(event) { if(event.target == modal) {modal.style.display = "none"; } }
+
+      document.addEventListener('DOMContentLoaded', function(){
+        var articleId;
+        $('#my-modal').on('shown.bs.modal', function (event) {
+          var button = $(event.relatedTarget)
+          articleId = button.data('id')
+          alert('complete!!!!!!!!!!')
+        })
+        var btnDelete = document.getElementById('delete-btn');
+        btnDelete.onclick = function() {
+          alert(articleId);
+        }
+      });
+    </script>
+  </body>
+</html>
