@@ -1,13 +1,11 @@
 const newsRouter = require("./news");
 const meRouter = require("./me");
-const articleDetailRouter = require("./article");
+const postRouter = require("./post");
 const siteRouter = require("./site");
-
 function route(app) {
   app.use("/news", newsRouter);
   app.use("/me", meRouter);
-  app.use("/article", articleDetailRouter);
-
+  app.use("/api/v1/post", postRouter);
   app.use("/", siteRouter);
 }
 

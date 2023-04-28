@@ -1,11 +1,11 @@
-const Article = require("../models/article.models");
+const Post = require("../models/post.models");
 const { multipleMongooseToObject } = require('../../util/mongoose')
 class SiteController {
   //[GET] /home
   home(req, res, next) {
-    Article.find({})
-      .then(article => {
-        res.render('home', {article: multipleMongooseToObject(article)})
+    Post.find({})
+      .then(post => {
+        res.render('home', {post: multipleMongooseToObject(post)})
       })
       .catch(next)
   }

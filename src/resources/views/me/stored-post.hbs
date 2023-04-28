@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="w-[100vw] h-[80vh] flex justify-center">
-      <div class="w-[60%] h-[100%] bg-[#CFCFCF] grid gap-4 grid-cols-1">
+      <div class="w-[60%] h-[100%] bg-[#CFCFCF] gap-4 grid-cols-1">
         <div class="w-[100%]">
           <div class="flex justify-between">
             <div class=""><svg
@@ -46,8 +46,8 @@
           </div>
         </div>
         <div class="w-[100%] flex justify-center items-center">
-          <div class="w-[100%] grid gap-4 grid-cols-2">
-            {{#each article}}
+          <div class="w-[100%] gap-4 grid-cols-2">
+            {{#each post}}
               <div class="flex w-[50%] justify-around items-center">
                 <button class="w-[50%] flex justify-center items-center">
                   <div
@@ -57,7 +57,7 @@
                       class="flex items-center justify-center rounded-[50%] bg-white p-[2px]"
                     >
                       <img
-                        src="{{this.user.profile_pic_url}}"
+                        src="{{this.profile_pic_url}}"
                         alt="avt"
                         class="h-[32px] w-[32px] rounded-[50%]"
                       />
@@ -65,24 +65,24 @@
                   </div>
                 </button>
                 <span class="w-[50%]">
-                  {{this.user.username}}
+                  {{this.user_name}}
                 </span>
               </div>
               <div class="flex w-[100%]">
                 <div class="grid gap-4">
                   <form
                     method="POST"
-                    action="/article/store"
+                    action="/api/v1/post/store"
                     class="grid gap-4 grid-cols-2"
                   >
                     <div class="form-group">
                       <input
                         type="text"
                         class="form-control border-2 border-rose-500"
-                        id="content"
-                        name="content"
-                        placeholder="name"
-                        value="{{this.user.username}}"
+                        id="username"
+                        name="user_name"
+                        placeholder="user name"
+                        value="{{this.user_name}}"
                       />
                     </div>
                     <div class="form-group">
@@ -92,11 +92,11 @@
                         id="profilePicUrl"
                         name="profile_pic_url"
                         placeholder="Image"
-                        value="{{this.user.profile_pic_url}}"
+                        value="{{this.profile_pic_url}}"
                       />
                     </div>
                     <a
-                      href="/article/{{this._id}}/edit"
+                      href="/post/{{this._id}}/edit"
                       class="rounded-full"
                     >Update</a>
                     <a
@@ -164,15 +164,15 @@
 
       document.addEventListener('DOMContentLoaded', function(){
       $(document).ready(function() {
-        var articleId;
+        var postId;
         var deleteForm = document.forms['delete-form'];
         $('#my-modal').on('shown.bs.modal', function (event) {
           var button = $(event.relatedTarget)
-          articleId = button.data('id')
+          postId = button.data('id')
         })
         var btnDelete = document.getElementById('delete-btn');
         btnDelete.onclick = function() {
-          deleteForm.action = '/article/' + articleId + "?_method=DELETE";
+          deleteForm.action = '/post/' + postId + "?_method=DELETE";
           deleteForm.submit();
         }
       })

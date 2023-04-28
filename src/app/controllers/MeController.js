@@ -1,12 +1,12 @@
 const { multipleMongooseToObject } = require("../../util/mongoose");
-const Article = require("../models/article.models");
+const Post = require("../models/post.models");
 
 class MeController {
-  //POST /me/my-article
-  storedArticle(req, res, next) {
-    Article.find({})
-      .then((article) => {
-        res.render("me/stored-article", {article: multipleMongooseToObject(article)})
+  //POST /me/my-post
+  storedPost(req, res, next) {
+    Post.find({})
+      .then((post) => {
+        res.render("me/stored-post", {post: multipleMongooseToObject(post)})
       })
       .catch(next);
   }

@@ -3,8 +3,6 @@ const router = express.Router();
 
 const meController = require('../app/controllers/MeController');
 
-// articleDetailController
-
-router.get('/my-article', meController.storedArticle);
+router.get('/my-post', meController.storedPost);
 
 module.exports = router;
